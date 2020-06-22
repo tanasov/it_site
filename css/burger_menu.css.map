@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/burger_menu.scss"
+    ],
+    "names": [],
+    "file": "burger_menu.css"
+}

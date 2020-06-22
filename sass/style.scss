@@ -1,5 +1,6 @@
     @import "normalize";
     @import "reset";
+    @import "burger_menu";
     $width: 1920px;
     @mixin head_section {
         font-style: normal;
@@ -81,6 +82,14 @@
         flex-direction: column;
     }
     
+    .nav {
+        display: flex;
+        justify-content: center;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
+    }
+    
     .menu {
         display: flex;
         justify-content: flex-end;
@@ -103,6 +112,97 @@
         font-size: 16px;
         line-height: 20px;
         color: #FFFFFF;
+        @media (max-width: 1024px) {
+            color: black;
+        }
+    }
+    
+    .btn_menu {
+        display: none;
+    }
+    
+    @media (max-width: 1024px) {
+        label {
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+        }
+        input {
+            display: none;
+        }
+        input:checked~label {
+            right: 0;
+        }
+        .burger {
+            position: relative;
+            top: 24px;
+            cursor: pointer;
+        }
+        .burger g {
+            stroke: rgb(45, 114, 250);
+            transition: stroke 0.25s ease-in-out;
+        }
+        .burger g:hover {
+            stroke: darken(rgb(45, 114, 250), 20%);
+        }
+        input:checked~label .burger {
+            opacity: 0;
+        }
+        .close {
+            position: relative;
+            top: 24px;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .close g:hover {
+            stroke: darken(rgb(45, 114, 250), 20%);
+        }
+        .close g {
+            stroke: rgb(45, 114, 250);
+            transition: stroke 0.25s ease-in-out;
+        }
+        .close line {
+            transform-origin: 0%;
+        }
+        .close g {
+            transform: rotateZ(45deg);
+            transform-origin: 50%;
+        }
+        input:checked~label .close {
+            opacity: 1;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            opacity: 0;
+            width: 100vw;
+            background-color: #ffffff;
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #ffffff;
+            top: 0;
+            padding: 0;
+            border-bottom: none;
+        }
+        input:checked~.menu {
+            opacity: 1;
+        }
+        .menu_list {
+            margin-top: 50px;
+            transition: margin 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 10px 10px;
+            border-bottom: none;
+            &:hover,
+            &:active {
+                border-bottom: none;
+                .menu_list_item {
+                    color: rgb(45, 114, 250);
+                }
+            }
+        }
+        input:checked~.menu_list {
+            margin-top: 0px;
+        }
     }
     
     .txt_header {
@@ -128,7 +228,7 @@
         line-height: 64px;
         text-align: center;
         color: #FFFFFF;
-        width: 829px;
+        max-width: 829px;
     }
     
     .btn_head_section {
@@ -154,7 +254,7 @@
         font-style: normal;
         @include head_section;
         text-align: center;
-        width: 739px;
+        max-width: 739px;
     }
     
     .head_2_section_1 {
@@ -165,13 +265,17 @@
         line-height: 25px;
         text-align: center;
         color: #999999;
-        width: 730px;
+        max-width: 730px;
     }
     
     .skills_section_1 {
         display: flex;
         justify-content: center;
         margin: 116px 0 0 0;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
     
     .skil_section_1 {
@@ -225,6 +329,9 @@
         justify-content: center;
         padding: 0 0 30px 0;
         border-bottom: 1px solid #E0E0E0;
+        @media (max-width: 1024px) {
+            flex-direction: column-reverse;
+        }
     }
     
     .txt_standarts_section_2 {
@@ -235,17 +342,17 @@
         @include head_section;
     }
     
-    .text_project_section_2 {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 25px;
-        color: #999999;
+    .img_standarts {
+        max-width: 100%;
+        height: auto;
     }
     
     .text_project_section_2 {
         margin: 40px 121px 30px 0;
         @include text_section;
+        @media (max-width: 655px) {
+            margin: 0;
+        }
     }
     
     .btn_about_project {
@@ -264,6 +371,9 @@
         display: flex;
         justify-content: center;
         margin: 70px 0 0 0;
+        @media (max-width: 655px) {
+            flex-direction: column;
+        }
     }
     
     .project_skil {
@@ -272,6 +382,9 @@
         width: 130px;
         flex-wrap: wrap;
         margin: 0 50px;
+        @media (max-width: 1024px) {
+            margin: 0 25px;
+        }
     }
     
     .numbers_skills {
@@ -296,6 +409,9 @@
     .section_3 {
         max-width: 100%;
         height: 797px;
+        @media (max-width: 1024px) {
+            height: auto;
+        }
     }
     
     .txt_section_3 {
@@ -304,6 +420,12 @@
         height: 390px;
         justify-content: center;
         padding: 100px 0 0 0;
+        @media (max-width: 1024px) {
+            justify-content: space-evenly;
+        }
+        @media (max-width: 655px) {
+            padding: 10px 0 0 0;
+        }
     }
     
     .head_section_3 {
@@ -312,7 +434,10 @@
         font-size: 36px;
         line-height: 53px;
         color: #FFFFFF;
-        width: 540px;
+        max-width: 540px;
+        @media (max-width: 655px) {
+            font-size: 22px;
+        }
     }
     
     .btn_section_3 {
@@ -321,6 +446,12 @@
         margin: 30px 0 0 370px;
         span {
             margin: auto;
+        }
+        @media (max-width: 1024px) {
+            margin: 50px 0 0 0;
+        }
+        @media (max-width: 655px) {
+            line-height: 14px;
         }
     }
     
@@ -331,6 +462,15 @@
         bottom: 220px;
         left: 20px;
         border-bottom: 1px solid #A1A1A1;
+        @media (max-width: 1024px) {
+            bottom: 248px;
+            left: 0;
+        }
+        @media (max-width: 655px) {
+            flex-direction: column;
+            align-items: center;
+            left: 0;
+        }
     }
     
     .job_section_3 {
@@ -343,6 +483,8 @@
     
     .img_job_section_3 {
         border-radius: 10px;
+        max-width: 100%;
+        height: auto;
     }
     
     .head_job_section_3 {
@@ -384,6 +526,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media (max-width: 1024px) {
+            margin: 0;
+        }
     }
     
     .txt_section_4 {
@@ -399,7 +544,7 @@
     
     .text_section_4 {
         margin: 50px 0 0 0;
-        width: 730px;
+        max-width: 730px;
         @include text_section;
         text-align: center;
     }
@@ -408,10 +553,16 @@
         display: flex;
         justify-content: center;
         margin: 70px 0 0 0;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
     
     .img_section_4 {
         margin: 0 15px 0 15px;
+        @media (max-width: 1024px) {
+            margin: 15px 0;
+        }
     }
     
     .btn_section_4 {
@@ -439,11 +590,17 @@
         text-align: center;
         display: flex;
         flex-direction: column;
+        @media (max-width: 1024px) {
+            background-image: none;
+        }
     }
     
     .head_section_5 {
         padding: 70px 0 0 0;
         @include head_section_white;
+        @media (max-width: 1024px) {
+            color: #000000;
+        }
     }
     
     .text_section_5 {
@@ -454,6 +611,9 @@
         line-height: 25px;
         text-align: center;
         color: #FFFFFF;
+        @media (max-width: 1024px) {
+            color: #000000;
+        }
     }
     
     .video_section_5 {
@@ -467,6 +627,11 @@
         border-radius: 10px;
         position: absolute;
         top: 220px;
+        @media (max-width: 1024px) {
+            width: 100%;
+            max-height: 430px;
+            top: 241px;
+        }
     }
     
     .btn_section_5 {
@@ -499,6 +664,9 @@
         margin: 270px 0 0 0;
         display: grid;
         justify-content: center;
+        @media (max-width: 1024px) {
+            display: none;
+        }
     }
     
     .head_aside {
@@ -582,6 +750,10 @@
         display: flex;
         justify-content: center;
         padding: 70px 0 0 0;
+        @media (max-width: 655px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
     
     .contact_information {
@@ -617,6 +789,7 @@
     .email_contact {
         &::before {
             content: url(../img/email.jpg);
+            background: #F6F6F8;
         }
     }
     
